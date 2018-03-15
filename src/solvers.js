@@ -15,7 +15,7 @@
 
 
 
-window.findNRooksSolution = function(n) {
+window.findNRooksSolution = function(n) { // 0(n)
   var board = new Board({'n': n});
   var solution = board.rows(); 
   
@@ -29,20 +29,20 @@ window.findNRooksSolution = function(n) {
 
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
-window.countNRooksSolutions = function(n) {
-  var solutionCount = 0; //fixme
+window.countNRooksSolutions = function(n) { //0(n^4)
+  var solutionCount = 0; 
   var board = new Board({'n': n});
 
 
-  var findSoln = function(row) {
+  var findSoln = function(row) { //0n - runs n times 
     if (row === n) {
       solutionCount++;
       return;
     }
     
-    for (var i = 0; i < n; i++) {
+    for (var i = 0; i < n; i++) { //0n - also runs n times
       board.togglePiece(row, i);
-      if (!board.hasAnyRooksConflicts()) {
+      if (!board.hasAnyRooksConflicts()) { //0n2 (nxn check)
         findSoln(row + 1);
       }
       board.togglePiece(row, i);
@@ -60,11 +60,14 @@ window.countNRooksSolutions = function(n) {
 
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
-window.findNQueensSolution = function(n) {
+window.findNQueensSolution = function(n) { //0(n^4)
   var board = new Board({'n': n});
-  var rows = board.rows()
-  //var count = 0;
+  var rows = board.rows();
   var solution;
+
+  if (n === 2 || n === 3) {
+    return rows;
+  }
 
   var findSoln = function(row) {
     if (row === n) { 
@@ -85,17 +88,17 @@ window.findNQueensSolution = function(n) {
     
   };
   findSoln(0);
-  var arr = JSON.parse(solution);
-  console.log('faaacckkk:', arr);
+  // var arr = JSON.parse(solution);
+  // console.log('faaacckkk:', arr);
   console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
-  return solution;
+  return JSON.parse(solution);
 };
 
 
 
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
-window.countNQueensSolutions = function(n) {
+window.countNQueensSolutions = function(n) { //0(n^4)
   var solutionCount = 0;
   var board = new Board({'n': n});
   // var edgeCases = [2, 3];

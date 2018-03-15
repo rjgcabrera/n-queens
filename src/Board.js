@@ -78,7 +78,7 @@
     // --------------------------------------------------------------
     //
     // test if a specific row on this board contains a conflict
-    hasRowConflictAt: function(rowIndex) {
+    hasRowConflictAt: function(rowIndex) { // O(n)
       var row = this.rows()[rowIndex];
       var count = 0;
       for (var i = 0; i < row.length; i++) {
@@ -90,7 +90,7 @@
     },
 
     // test if any rows on this board contain conflicts
-    hasAnyRowConflicts: function() {
+    hasAnyRowConflicts: function() { // O(n^2)
       var board = this.rows();
       for (var i = 0; i < board.length; i++) {
         if (this.hasRowConflictAt(i)) {
@@ -106,7 +106,7 @@
     // --------------------------------------------------------------
     //
     // test if a specific column on this board contains a conflict
-    hasColConflictAt: function(colIndex) {
+    hasColConflictAt: function(colIndex) { // 0(n)
       var board = this.rows();
       var col = [];
       var count = 0;      
@@ -125,7 +125,7 @@
     },
 
     // test if any columns on this board contain conflicts
-    hasAnyColConflicts: function() {
+    hasAnyColConflicts: function() { // 0(n^2)
       var board = this.rows();
       
       for (var i = 0; i < board.length; i++) {
@@ -142,7 +142,7 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
-    hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+    hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) { // 0(n)
 
       var board = this.rows();
       var diagonal = []; 
@@ -163,7 +163,7 @@
     },
 
     // test if any major diagonals on this board contain conflicts
-    hasAnyMajorDiagonalConflicts: function() {
+    hasAnyMajorDiagonalConflicts: function() { // 0(n^2)
 
       var board = this.rows();
       
@@ -181,7 +181,7 @@
     // --------------------------------------------------------------
     //
     // test if a specific minor diagonal on this board contains a conflict
-    hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
+    hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) { // 0(n)
       var board = this.rows();
       var diagonal = []; 
       var count = 0;
@@ -200,7 +200,7 @@
     },
 
     // test if any minor diagonals on this board contain conflicts
-    hasAnyMinorDiagonalConflicts: function() {
+    hasAnyMinorDiagonalConflicts: function() { // 0(n^2)
       var board = this.rows();
       
       for (var i = board.length + 1; i >= 0; i--) {
