@@ -61,6 +61,7 @@ describe('solvers', function() {
 
         expect(numPieces).to.equal(0);
         expect(solutionBoard.get('n')).to.equal(n);
+        expect(solutionBoard.hasAnyQueensConflicts()).to.be.equal(false);
       });
     });
 
