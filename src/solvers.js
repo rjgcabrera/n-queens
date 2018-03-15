@@ -42,7 +42,8 @@ window.countNRooksSolutions = function(n) { //0(n^4)
     
     for (var i = 0; i < n; i++) { //0n - also runs n times
       board.togglePiece(row, i);
-      if (!board.hasAnyRooksConflicts()) { //0n2 (nxn check)
+      if (!board.hasColConflictAt(i)) { //0n2 (nxn check)
+      //if (!board.hasRowConflictAt(row)) {
         findSoln(row + 1);
       }
       board.togglePiece(row, i);
@@ -79,9 +80,16 @@ window.findNQueensSolution = function(n) { //0(n^4)
     
     for (var i = 0; i < n; i++) {
       board.togglePiece(row, i);
+      
+      //check col conflict at (i)  
+      //_getmajorindex
+      //_getminorindex
+        //check major diagonals,
+        //check minor diagonals 
       if (!board.hasAnyQueenConflictsOn(row, i)) {
         findSoln(row + 1);
       }
+ 
       //solution = board.rows();
       board.togglePiece(row, i);
     }      
